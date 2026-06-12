@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/style.css">
+
+<body>
+  <header>
+    <h1 class="title">blog-app</h1>
+    <nav class="nav">
+      <ul class="menu-group">
+        <li class="menu-item"><a href="/blogs">記事一覧</a></li>
+        <!-- <li class="menu-item"><a href="/blogs">記事一覧</a></li> -->
+        <li class="menu-item"><a href="blogs/post">投稿</a></li>
+        <li class="menu-item"><a href="#">プロフィール</a></li>
+      </ul>
+    </nav>
+  </header>
+  <h1 th:text="${blog.title}">タイトル</h1>
+  <p><span th:text="${blog.content}"></span></p>
+  <form th:action="@{/blogs/{id}/delete(id=${blog.id})}" method="post">
+    <button type="submit">削除</button>
+  </form>
+  <!-- <a th:href="@{/blogs/{id}/edit(id=${blog.id})}">編集</a> -->
+</body>
+
+</html>
