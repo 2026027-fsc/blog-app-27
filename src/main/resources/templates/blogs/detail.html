@@ -19,7 +19,7 @@
   <form th:action="@{/blogs/{id}/delete(id=${blog.id})}" method="post">
     <button type="submit">削除</button>
   </form>
-  <!-- <a th:href="@{/blogs/{id}/edit(id=${blog.id})}">編集</a> -->
+  <a th:href="@{/blogs/{id}/edit(id=${blog.id})}">編集</a>
 </body>
 
 </html>

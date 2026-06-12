@@ -39,8 +39,16 @@ public class BlogRepository {
         .param("id", id)
         .update();
   }
-}
 
+  public void update(Long id, String title, String content) {
+    jdbcClient.sql("UPDATE books SET title = :title, content = :content WHERE id = :id")
+        .param("title", title)
+        .param("content", content)
+        .param("id", id)
+        .update();
+  }
+
+}
 // public class BlogRepository {
 // private final DataSource dataSource;
 

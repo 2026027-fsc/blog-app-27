@@ -49,6 +49,7 @@ public class BlogController {
         return "blogs/post";
     }
 
+    // 詳細
     @GetMapping("/blogs/{id}")
     public String detail(@PathVariable Long id, Model model) {
         Optional<Blog> blogOpt = blogService.findById(id);
@@ -62,6 +63,29 @@ public class BlogController {
     @PostMapping("/blogs/{id}/delete")
     public String delete(@PathVariable Long id) {
         blogService.delete(id);
+        return "redirect:/blogs";
+    }
+
+    // 編集
+    @GetMapping("/blogs/{id}/edit")
+    public String editForm(@PathVariable Long id, Model model) {
+        Optional<Blog> blogOpt = blogService.findById(id);
+        if (blogOpt.isEmpty()) {
+            return "redirect:/blogs";
+        }
+        Blog blog = blogOpt.get();
+
+        BlogForm form = new BlogForm();
+        form.setTitle(blog.getTitle());
+        form.setContent(blog.getContent());
+        model.addAttribute("blogForm", form);
+        model.addAttribute("blogId", id);
+        return "blogs/edit";
+    }
+
+    @PostMapping("/blogs/{id}")
+    public String update(@PathVariable Long id, @ModelAttribute BlogForm form) {
+        blogService.update(id, form);
         return "redirect:/blogs";
     }
 

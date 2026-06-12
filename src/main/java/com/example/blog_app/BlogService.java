@@ -21,10 +21,10 @@ public class BlogService {
   }
 
   public void register(BlogForm form) {
-    if (form.getTitle() isEmpty.?) {
+    if (form.getTitle().isEmpty()) {
       throw new IllegalArgumentException("タイトルを入力してください");
     }
-    if (form.getContent() == null) {
+    if (form.getContent().isEmpty()) {
       throw new IllegalArgumentException("本文を入力してください");
     }
     blogRepository.save(new Blog(null, form.getTitle(), form.getContent()));
@@ -37,4 +37,8 @@ public class BlogService {
   public void delete(Long id) {
     blogRepository.deleteById(id);
   }
+
+  public void update(Long id, BlogForm form) {
+  blogRepository.update(id, form.getTitle(), form.getContent());
+}
 }

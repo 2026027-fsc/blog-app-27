@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('ブログの編集')}"></head>
+
+<body>
+    <h1>ブログの編集</h1>
+    <form th:action="@{/blogs/{id}(id=${blogId})}" method="post" th:object="${blogForm}">
+        <label for="title">タイトル:</label>
+        <input type="text" th:field="*{title}">
+        <label for="content">本文</label>
+        <input type="textarea" th:field="*{content}">
+        <button type="submit">更新</button>
+    </form>
+</body>
+
+</html>
